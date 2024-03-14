@@ -1,0 +1,1 @@
+from omop_cdm.constants import NAMING_CONVENTION

@@ -1,0 +1,7 @@
+# Allow a longer line length for easier to navigate table definitions
+line-length = 119
+
+[lint]
+ignore = [
+    "F821",  # Allow unresolved return types for relationships
+]

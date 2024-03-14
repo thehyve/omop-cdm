@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "omop-cdm"
+version = "0.1.0"
+description = "SQLAlchemy ORM of the OHDSI OMOP CDM"
+authors = [
+    "Spayralbe <stefan@thehyve.nl>",
+]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sqlalchemy = "^2.0.0"
+
+
+[tool.poetry.group.test.dependencies]
+testcontainers-postgres = "^0.0.1rc1"
+pytest = "^8.1.1"
+nox = "^2024.3.2"
+ruff = "^0.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+pythonpath = [
+    ".",
+]
+
+# Ignore import violations in all `__init__.py` files
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401"]

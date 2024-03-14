@@ -1,0 +1,1 @@
+"""CDM vocabulary tables package."""

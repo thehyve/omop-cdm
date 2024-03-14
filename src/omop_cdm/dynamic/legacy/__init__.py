@@ -1,0 +1,1 @@
+"""Legacy CDM tables package."""
