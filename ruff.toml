@@ -1,0 +1,38 @@
+src = ["src", "."]
+
+[lint]
+select = [
+    # pycodestyle
+    "E", "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # flake8-builtins
+    "A",
+    # flake8-return
+    "RET",
+    # flake8-pytest-style
+    "PT",
+    # flake8-use-pathlib
+    "PTH",
+    # flake8-self
+    "SLF",
+    # flake8-comprehensions
+    "C4",
+    # Ruff-specific rules
+    "RUF",
+    # isort
+    "I",
+]
+
+[lint.isort]
+known-first-party = ["omop_cdm"]
+
+# Ignore import violations in all `__init__.py` files
+[lint.per-file-ignores]
+"__init__.py" = ["E402", "F401"]
