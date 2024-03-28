@@ -1,6 +1,7 @@
 # omop-cdm
 
-Python SQLAlchemy table definitions of the [OHDSI OMOP CDM](https://ohdsi.github.io/CommonDataModel/).
+omop-cdm is a Python package that contains SQLAlchemy declarative table definitions of several
+versions of the [OHDSI OMOP CDM](https://ohdsi.github.io/CommonDataModel/).
 
 ## Installation
 
