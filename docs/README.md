@@ -1,5 +1,10 @@
 # Usage
 
+omop-cdm provides SQLAlchemy declarative table definitions that can be used
+to interact with an OMOP CDM via Python. This can be to more easily create all tables in
+your database, but also to use them for data manipulation
+(see [SQLAlchemy data manipulation](https://docs.sqlalchemy.org/en/20/tutorial/orm_data_manipulation.html)).
+
 ## Preparation
 
 Before creating the OMOP CDM tables, the following must be available:
@@ -47,8 +52,8 @@ In this regular fashion, all tables are already bound to a SQLAlchemy
 `DeclarativeBase` class. This approach leaves fewer options for CDM modification,
 but is slightly simpler to use.
 
-E.g. once the engine is defined, creating all the tables in a database, can be done
-as follows:
+E.g. once the engine is defined, creating all the tables in a database can be done
+by simply running the following:
 
 ```python
 with engine.begin() as conn:
@@ -61,7 +66,7 @@ Alternatively, you can use the dynamic CDM definitions. Here tables have not bee
 a SQLAlchemy `DeclarativeBase` class yet, but are defined as regular classes, which can
 then be used as [mixins](https://docs.sqlalchemy.org/en/20/orm/declarative_mixins.html).
 
-To use these, the classes must first be bound to a Base:
+To use these, the classes must first be bound to a `Base`:
 ```python
 from omop_cdm.dynamic import cdm54
 from sqlalchemy.orm import DeclarativeBase
@@ -79,8 +84,8 @@ class Person(cdm54.BasePersonCdm54, Base):
 This approach allows for the greatest customization possibilities.
 
 Additionally, the dynamic version includes two additional tables which can optionally
-be added to your CDM. These are the StemTable (intermediate table for mapping purposes)
-and the StcmVersion table (to allow versioning of STCM source vocabulary mappings).
+be added to your CDM. These are the `StemTable` (intermediate table for mapping purposes)
+and the `StcmVersion` table (to allow versioning of STCM source vocabulary mappings).
 
 ## Legacy tables
 
