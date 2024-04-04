@@ -16,16 +16,9 @@ python = [
 
 @nox.session(python=python)
 def tests(session: nox.Session):
-    """Run test suite."""
+    """Run pytest + code coverage."""
     session.run("poetry", "install", external=True)
-    session.run("pytest", "--cov=src")
-    session.notify("coverage")
-
-
-@nox.session
-def coverage(session: nox.Session):
-    """Generate pytest code coverage report."""
-    session.run("coverage", "report", "--show-missing")
+    session.run("pytest", "--cov-report", "term-missing", "--cov=src")
 
 
 @nox.session(reuse_venv=True, name="format")
