@@ -1,6 +1,8 @@
 name: publish to PyPI 🐍
 
-on: release
+on:
+  release:
+    types: [published]
 
 jobs:
   pypi-publish:
