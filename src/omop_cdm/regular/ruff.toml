@@ -1,0 +1,10 @@
+# Extend the `ruff.toml` file in the root directory...
+extend = "../../../ruff.toml"
+
+# Allow a longer line length for easier to navigate table definitions
+line-length = 119
+
+[lint]
+ignore = [
+    "RUF012", # Allow mutable class var __table_args__
+]
