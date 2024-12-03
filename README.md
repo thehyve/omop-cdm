@@ -14,7 +14,7 @@ pip install omop-cdm
 
 ## Usage
 
-See [User documentation](docs/README.md)
+See [User documentation](https://github.com/thehyve/omop-cdm/blob/main/docs/README.md)
 
 ## Supported databases
 The omop-cdm table definitions are tested to be compatible with PostgreSQL.
