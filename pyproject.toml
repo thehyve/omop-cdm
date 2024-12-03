@@ -20,6 +20,10 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 
+[tool.poetry.urls]
+"Repository" = "https://github.com/thehyve/omop-cdm"
+"Documentation" = "https://github.com/thehyve/omop-cdm/blob/main/docs/README.md"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 sqlalchemy = "^2.0.4"
