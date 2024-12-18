@@ -15,7 +15,7 @@ class BasePayerPlanPeriodCdm54:
     __tablename__ = "payer_plan_period"
     __table_args__ = {"schema": CDM_SCHEMA}
 
-    payer_plan_period_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), primary_key=True, sort_order=100)
+    payer_plan_period_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
     payer_plan_period_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=300)
     payer_plan_period_end_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
@@ -36,10 +36,6 @@ class BasePayerPlanPeriodCdm54:
     @declared_attr
     def payer_concept(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="PayerPlanPeriod.payer_concept_id")
-
-    @declared_attr
-    def payer_plan_period(cls) -> Mapped["Person"]:
-        return relationship("Person", foreign_keys="PayerPlanPeriod.payer_plan_period_id")
 
     @declared_attr
     def payer_source_concept(cls) -> Mapped["Concept"]:
@@ -94,7 +90,9 @@ class BaseCostCdm54:
     paid_by_primary: Mapped[Optional[decimal.Decimal]] = mapped_column(Numeric, sort_order=1400)
     paid_ingredient_cost: Mapped[Optional[decimal.Decimal]] = mapped_column(Numeric, sort_order=1500)
     paid_dispensing_fee: Mapped[Optional[decimal.Decimal]] = mapped_column(Numeric, sort_order=1600)
-    payer_plan_period_id: Mapped[Optional[int]] = mapped_column(Integer, sort_order=1700)
+    payer_plan_period_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey(f"{CDM_SCHEMA}.payer_plan_period.payer_plan_period_id"), sort_order=1700
+    )
     amount_allowed: Mapped[Optional[decimal.Decimal]] = mapped_column(Numeric, sort_order=1800)
     revenue_code_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=1900)
     revenue_code_source_value: Mapped[Optional[str]] = mapped_column(String(50), sort_order=2000)

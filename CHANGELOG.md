@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.0
+
+Bugfixes
+- Incorrect references for payer_plan_period_id fields in CDM 5.4 ([#12](https://github.com/thehyve/omop-cdm/issues/12))
+
 ## v0.2.0
 Update supported Python version to 3.9-3.13.
 
