@@ -869,7 +869,6 @@ class PayerPlanPeriod(Base):
     stop_reason_source_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID))
 
     payer_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="PayerPlanPeriod.payer_concept_id")
-    payer_plan_period: Mapped["Person"] = relationship("Person", foreign_keys="PayerPlanPeriod.payer_plan_period_id")
     payer_source_concept: Mapped["Concept"] = relationship(
         "Concept", foreign_keys="PayerPlanPeriod.payer_source_concept_id"
     )

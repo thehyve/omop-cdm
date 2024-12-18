@@ -38,10 +38,6 @@ class BasePayerPlanPeriodCdm54:
         return relationship("Concept", foreign_keys="PayerPlanPeriod.payer_concept_id")
 
     @declared_attr
-    def payer_plan_period(cls) -> Mapped["Person"]:
-        return relationship("Person", foreign_keys="PayerPlanPeriod.payer_plan_period_id")
-
-    @declared_attr
     def payer_source_concept(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="PayerPlanPeriod.payer_source_concept_id")
 
