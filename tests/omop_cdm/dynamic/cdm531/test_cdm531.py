@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy import Engine, inspect
 
 from src.omop_cdm.constants import CDM_SCHEMA, VOCAB_SCHEMA
-from tests.conftest import create_all_tables, temp_schemas
+from tests.conftest import create_all_tables, temp_schemas, validate_relationships
 from tests.omop_cdm.dynamic.cdm_definitions import cdm531
 from tests.omop_cdm.table_sets import CDM531_NON_VOCAB, CUSTOM, VOCAB
 
@@ -21,3 +21,4 @@ def test_create_tables_cdm531(cdm531_engine: Engine):
         cdm_tables = inspect(cdm531_engine).get_table_names(SCHEMA_MAP[CDM_SCHEMA])
         assert set(vocab_tables) == VOCAB
         assert set(cdm_tables) == CDM531_NON_VOCAB | CUSTOM
+        validate_relationships(cdm531_engine, cdm531.Person)
