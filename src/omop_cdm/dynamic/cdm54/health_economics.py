@@ -16,7 +16,7 @@ class BasePayerPlanPeriodCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     payer_plan_period_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     payer_plan_period_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=300)
     payer_plan_period_end_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     payer_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=500)
