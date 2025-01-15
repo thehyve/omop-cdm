@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy import BIGINT, Engine, inspect
 
 from src.omop_cdm.constants import CDM_SCHEMA, VOCAB_SCHEMA
-from tests.conftest import create_all_tables, temp_schemas
+from tests.conftest import create_all_tables, temp_schemas, validate_relationships
 from tests.omop_cdm.dynamic.cdm_definitions import cdm54_custom
 from tests.omop_cdm.table_sets import CDM54_NON_VOCAB, CUSTOM
 
@@ -27,6 +27,7 @@ def _create_custom_cdm_tables(cdm54_custom_engine: Engine):
 def test_custom_table_is_created(cdm54_custom_engine: Engine):
     cdm_tables = inspect(cdm54_custom_engine).get_table_names(SCHEMA_MAP[CDM_SCHEMA])
     assert set(cdm_tables) == CDM54_NON_VOCAB | CUSTOM | {"cloudspine"}
+    validate_relationships(cdm54_custom_engine, cdm54_custom.Person)
 
 
 @pytest.mark.usefixtures("_create_custom_cdm_tables")
