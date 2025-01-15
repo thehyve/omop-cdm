@@ -894,7 +894,7 @@ class BaseStemTableCdm54:
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=300)
     concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=400)
     start_date: Mapped[Optional[datetime.date]] = mapped_column(Date, sort_order=500)
-    start_datetime: Mapped[datetime.datetime] = mapped_column(DateTime, sort_order=600)
+    start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=600)
     end_date: Mapped[Optional[datetime.date]] = mapped_column(Date, sort_order=700)
     end_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=800)
     verbatim_end_date: Mapped[Optional[datetime.date]] = mapped_column(Date, sort_order=900)
