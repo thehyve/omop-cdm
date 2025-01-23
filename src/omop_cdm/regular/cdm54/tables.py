@@ -2,7 +2,7 @@
 
 import datetime
 import decimal
-from typing import Optional
+from typing import List, Optional
 
 from sqlalchemy import BigInteger, Date, DateTime, ForeignKey, Integer, MetaData, Numeric, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
@@ -346,6 +346,36 @@ class Person(Base):
     provider: Mapped["Provider"] = relationship("Provider", foreign_keys="Person.provider_id")
     race_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Person.race_concept_id")
     race_source_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Person.race_source_concept_id")
+
+    observation_periods: Mapped[List["ObservationPeriod"]] = relationship(
+        back_populates="person", cascade="all, delete-orphan"
+    )
+    visit_occurrences: Mapped[List["VisitOccurrence"]] = relationship(
+        back_populates="person", cascade="all, delete-orphan"
+    )
+    visit_details: Mapped[List["VisitDetail"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    condition_occurrences: Mapped[List["ConditionOccurrence"]] = relationship(
+        back_populates="person", cascade="all, delete-orphan"
+    )
+    drug_exposures: Mapped[List["DrugExposure"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    procedure_occurrences: Mapped[List["ProcedureOccurrence"]] = relationship(
+        back_populates="person", cascade="all, delete-orphan"
+    )
+    device_exposures: Mapped[List["DeviceExposure"]] = relationship(
+        back_populates="person", cascade="all, delete-orphan"
+    )
+    measurements: Mapped[List["Measurement"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    observations: Mapped[List["Observation"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    death: Mapped["Death"] = relationship(back_populates="person", cascade="all, delete-orphan")
+    notes: Mapped[List["Note"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    specimens: Mapped[List["Specimen"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    payer_plan_periods: Mapped[List["PayerPlanPeriod"]] = relationship(
+        back_populates="person", cascade="all, delete-orphan"
+    )
+    drug_eras: Mapped[List["DrugEra"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    dose_eras: Mapped[List["DoseEra"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    condition_eras: Mapped[List["ConditionEra"]] = relationship(back_populates="person", cascade="all, delete-orphan")
+    episodes: Mapped[List["Episode"]] = relationship(back_populates="person", cascade="all, delete-orphan")
 
 
 class ObservationPeriod(Base):

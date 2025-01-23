@@ -265,7 +265,7 @@ class BasePersonCdm54:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def death(cls) -> Mapped[List["Death"]]:
+    def death(cls) -> Mapped["Death"]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
