@@ -121,11 +121,13 @@ class BaseEpisodeEventCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     episode_id: Mapped[int] = mapped_column(
-        ForeignKey(f"{CDM_SCHEMA}.episode.episode_id"), primary_key=True, sort_order=100
+        ForeignKey(f"{CDM_SCHEMA}.episode.episode_id", ondelete="CASCADE"), primary_key=True, sort_order=100
     )
     event_id: Mapped[int] = mapped_column(BigInteger, primary_key=True, sort_order=200)
     episode_event_field_concept_id: Mapped[int] = mapped_column(
-        ForeignKey(FK_CONCEPT_ID), primary_key=True, sort_order=300
+        ForeignKey(FK_CONCEPT_ID),
+        primary_key=True,
+        sort_order=300,
     )
 
     @declared_attr

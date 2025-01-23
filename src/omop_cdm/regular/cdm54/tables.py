@@ -213,7 +213,7 @@ class ConditionOccurrence(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     condition_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     condition_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     condition_start_date: Mapped[datetime.date] = mapped_column(Date)
     condition_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -255,7 +255,7 @@ class Death(Base):
     __tablename__ = "death"
     __table_args__ = {"schema": CDM_SCHEMA}
 
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), primary_key=True, index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), primary_key=True, index=True)
     death_date: Mapped[datetime.date] = mapped_column(Date)
     death_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
     death_type_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID))
@@ -353,7 +353,7 @@ class ObservationPeriod(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     observation_period_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     observation_period_start_date: Mapped[datetime.date] = mapped_column(Date)
     observation_period_end_date: Mapped[datetime.date] = mapped_column(Date)
     period_type_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID))
@@ -369,7 +369,7 @@ class Specimen(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     specimen_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     specimen_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     specimen_type_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID))
     specimen_date: Mapped[datetime.date] = mapped_column(Date)
@@ -403,7 +403,7 @@ class VisitOccurrence(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     visit_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     visit_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     visit_start_date: Mapped[datetime.date] = mapped_column(Date)
     visit_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -446,7 +446,7 @@ class VisitDetail(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     visit_detail_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     visit_detail_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     visit_detail_start_date: Mapped[datetime.date] = mapped_column(Date)
     visit_detail_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -499,7 +499,7 @@ class DeviceExposure(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     device_exposure_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     device_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     device_exposure_start_date: Mapped[datetime.date] = mapped_column(Date)
     device_exposure_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -542,7 +542,7 @@ class DrugExposure(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     drug_exposure_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     drug_exposure_start_date: Mapped[datetime.date] = mapped_column(Date)
     drug_exposure_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -584,7 +584,7 @@ class Measurement(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     measurement_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     measurement_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     measurement_date: Mapped[datetime.date] = mapped_column(Date)
     measurement_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -634,7 +634,7 @@ class Note(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     note_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     note_date: Mapped[datetime.date] = mapped_column(Date)
     note_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
     note_type_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
@@ -670,7 +670,7 @@ class Observation(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     observation_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     observation_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     observation_date: Mapped[datetime.date] = mapped_column(Date)
     observation_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -717,7 +717,7 @@ class ProcedureOccurrence(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     procedure_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     procedure_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     procedure_date: Mapped[datetime.date] = mapped_column(Date)
     procedure_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -760,7 +760,7 @@ class ConditionEra(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     condition_era_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     condition_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     condition_era_start_date: Mapped[datetime.datetime] = mapped_column(DateTime)
     condition_era_end_date: Mapped[datetime.datetime] = mapped_column(DateTime)
@@ -775,7 +775,7 @@ class DoseEra(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     dose_era_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     unit_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID))
     dose_value: Mapped[decimal.Decimal] = mapped_column(Numeric)
@@ -792,7 +792,7 @@ class DrugEra(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     drug_era_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     drug_era_start_date: Mapped[datetime.datetime] = mapped_column(DateTime)
     drug_era_end_date: Mapped[datetime.datetime] = mapped_column(DateTime)
@@ -808,7 +808,7 @@ class Episode(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     episode_id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID))
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"))
     episode_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID))
     episode_start_date: Mapped[datetime.date] = mapped_column(Date)
     episode_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime)
@@ -836,7 +836,9 @@ class EpisodeEvent(Base):
     __tablename__ = "episode_event"
     __table_args__ = {"schema": CDM_SCHEMA}
 
-    episode_id: Mapped[int] = mapped_column(ForeignKey(f"{CDM_SCHEMA}.episode.episode_id"), primary_key=True)
+    episode_id: Mapped[int] = mapped_column(
+        ForeignKey(f"{CDM_SCHEMA}.episode.episode_id", ondelete="CASCADE"), primary_key=True
+    )
     event_id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     episode_event_field_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True)
 
@@ -851,7 +853,7 @@ class PayerPlanPeriod(Base):
     __table_args__ = {"schema": CDM_SCHEMA}
 
     payer_plan_period_id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     payer_plan_period_start_date: Mapped[datetime.date] = mapped_column(Date)
     payer_plan_period_end_date: Mapped[datetime.date] = mapped_column(Date)
     payer_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID))
