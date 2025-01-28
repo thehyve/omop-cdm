@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.3.1
+
+Internal changes:
+- Upgraded to Poetry 2.
+- Upgraded dev and test dependencies.
+- Updated metadata in pyproject.toml file.
+- Use Python >= 3.9 type hints.
+- Added __version__ variable
+
 ## v0.3.0
 
 New (for CDM 5.4 onwards):
