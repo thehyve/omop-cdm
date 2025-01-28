@@ -11,6 +11,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Development Status :: 4 - Beta",
     "Natural Language :: English",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
@@ -23,6 +24,8 @@ classifiers = [
 [tool.poetry.urls]
 "Repository" = "https://github.com/thehyve/omop-cdm"
 "Documentation" = "https://github.com/thehyve/omop-cdm/blob/main/docs/README.md"
+"Bug Tracker" = "https://github.com/thehyve/omop-cdm/issues"
+"Changelog" = "https://github.com/thehyve/omop-cdm/blob/main/CHANGELOG.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
