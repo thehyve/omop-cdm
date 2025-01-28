@@ -2,7 +2,7 @@
 
 import datetime
 import decimal
-from typing import Optional
+from typing import List, Optional
 
 from sqlalchemy import BigInteger, Date, DateTime, ForeignKey, Integer, Numeric, String, Text
 from sqlalchemy.ext.declarative import declared_attr
@@ -26,7 +26,7 @@ class BaseConditionOccurrenceCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     condition_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     condition_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     condition_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     condition_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -81,7 +81,9 @@ class BaseDeathCdm54:
     __tablename__ = "death"
     __table_args__ = {"schema": CDM_SCHEMA}
 
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), primary_key=True, index=True, sort_order=100)
+    person_id: Mapped[int] = mapped_column(
+        ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), primary_key=True, index=True, sort_order=100
+    )
     death_date: Mapped[datetime.date] = mapped_column(Date, sort_order=200)
     death_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=300)
     death_type_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=400)
@@ -226,13 +228,81 @@ class BasePersonCdm54:
     def race_source_concept(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="Person.race_source_concept_id")
 
+    @declared_attr
+    def observation_periods(cls) -> Mapped[List["ObservationPeriod"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def visit_occurrences(cls) -> Mapped[List["VisitOccurrence"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def visit_details(cls) -> Mapped[List["VisitDetail"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def condition_occurrences(cls) -> Mapped[List["ConditionOccurrence"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def drug_exposures(cls) -> Mapped[List["DrugExposure"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def procedure_occurrences(cls) -> Mapped[List["ProcedureOccurrence"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def device_exposures(cls) -> Mapped[List["DeviceExposure"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def measurements(cls) -> Mapped[List["Measurement"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def observations(cls) -> Mapped[List["Observation"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def death(cls) -> Mapped["Death"]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def notes(cls) -> Mapped[List["Note"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def specimens(cls) -> Mapped[List["Specimen"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def payer_plan_periods(cls) -> Mapped[List["PayerPlanPeriod"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def drug_eras(cls) -> Mapped[List["DrugEra"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def dose_eras(cls) -> Mapped[List["DoseEra"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def condition_eras(cls) -> Mapped[List["ConditionEra"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
+    @declared_attr
+    def episodes(cls) -> Mapped[List["Episode"]]:
+        return relationship(back_populates="person", cascade="all, delete-orphan")
+
 
 class BaseObservationPeriodCdm54:
     __tablename__ = "observation_period"
     __table_args__ = {"schema": CDM_SCHEMA}
 
     observation_period_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     observation_period_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=300)
     observation_period_end_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     period_type_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=500)
@@ -251,7 +321,7 @@ class BaseSpecimenCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     specimen_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     specimen_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     specimen_type_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=400)
     specimen_date: Mapped[datetime.date] = mapped_column(Date, sort_order=500)
@@ -296,7 +366,7 @@ class BaseVisitOccurrenceCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     visit_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     visit_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     visit_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     visit_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -357,7 +427,7 @@ class BaseVisitDetailCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     visit_detail_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     visit_detail_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     visit_detail_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     visit_detail_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -426,7 +496,7 @@ class BaseDeviceExposureCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     device_exposure_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     device_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     device_exposure_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     device_exposure_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -489,7 +559,7 @@ class BaseDrugExposureCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     drug_exposure_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     drug_exposure_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     drug_exposure_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -552,7 +622,7 @@ class BaseMeasurementCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     measurement_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     measurement_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     measurement_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     measurement_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -631,7 +701,7 @@ class BaseNoteCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     note_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     note_date: Mapped[datetime.date] = mapped_column(Date, sort_order=300)
     note_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=400)
     note_type_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=500)
@@ -691,7 +761,7 @@ class BaseObservationCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     observation_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     observation_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     observation_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     observation_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -764,7 +834,7 @@ class BaseProcedureOccurrenceCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     procedure_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     procedure_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     procedure_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     procedure_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -821,7 +891,7 @@ class BaseStemTableCdm54:
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     domain_id: Mapped[Optional[str]] = mapped_column(ForeignKey(FK_DOMAIN_ID), sort_order=200)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=300)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=300)
     concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=400)
     start_date: Mapped[Optional[datetime.date]] = mapped_column(Date, sort_order=500)
     start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=600)

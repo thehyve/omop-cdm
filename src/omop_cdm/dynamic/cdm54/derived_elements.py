@@ -16,7 +16,7 @@ class BaseConditionEraCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     condition_era_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     condition_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     condition_era_start_date: Mapped[datetime.datetime] = mapped_column(DateTime, sort_order=400)
     condition_era_end_date: Mapped[datetime.datetime] = mapped_column(DateTime, sort_order=500)
@@ -36,7 +36,7 @@ class BaseDoseEraCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     dose_era_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     unit_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=400)
     dose_value: Mapped[decimal.Decimal] = mapped_column(Numeric, sort_order=500)
@@ -61,7 +61,7 @@ class BaseDrugEraCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     drug_era_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), index=True, sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=300)
     drug_era_start_date: Mapped[datetime.datetime] = mapped_column(DateTime, sort_order=400)
     drug_era_end_date: Mapped[datetime.datetime] = mapped_column(DateTime, sort_order=500)
@@ -82,7 +82,7 @@ class BaseEpisodeCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     episode_id: Mapped[int] = mapped_column(BigInteger, primary_key=True, sort_order=100)
-    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID), sort_order=200)
+    person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), sort_order=200)
     episode_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=300)
     episode_start_date: Mapped[datetime.date] = mapped_column(Date, sort_order=400)
     episode_start_datetime: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, sort_order=500)
@@ -121,11 +121,13 @@ class BaseEpisodeEventCdm54:
     __table_args__ = {"schema": CDM_SCHEMA}
 
     episode_id: Mapped[int] = mapped_column(
-        ForeignKey(f"{CDM_SCHEMA}.episode.episode_id"), primary_key=True, sort_order=100
+        ForeignKey(f"{CDM_SCHEMA}.episode.episode_id", ondelete="CASCADE"), primary_key=True, sort_order=100
     )
     event_id: Mapped[int] = mapped_column(BigInteger, primary_key=True, sort_order=200)
     episode_event_field_concept_id: Mapped[int] = mapped_column(
-        ForeignKey(FK_CONCEPT_ID), primary_key=True, sort_order=300
+        ForeignKey(FK_CONCEPT_ID),
+        primary_key=True,
+        sort_order=300,
     )
 
     @declared_attr

@@ -199,3 +199,34 @@ When adding your own tables, it's a good practice to specify a schema name via `
 (see example above). If the schema will always be the same, there is no harm in hard coding the name.
 Otherwise, it's better to provide the schema placeholder name, and let the runtime schema name be
 determined by your `schema_translate_map`.
+
+
+## Querying the CDM
+
+Starting from CDM 5.4, all table relationships are accessible via ORM attributes.
+In the example below, a populated CDM is queried by finding a person given a
+person_source_value. Then all condition start dates and concept names are listed
+for that person.
+
+```python
+from sqlalchemy import create_engine, select
+from sqlalchemy.orm import Session
+from omop_cdm.constants import CDM_SCHEMA, VOCAB_SCHEMA
+from omop_cdm.regular import cdm54
+
+schema_map = {
+    CDM_SCHEMA: "cdm54",
+    VOCAB_SCHEMA: "vocab",
+}
+
+engine = create_engine("postgresql://postgres@localhost/ohdsi")
+engine = engine.execution_options(schema_translate_map=schema_map)
+
+with Session(engine) as session:
+    statement = select(cdm54.Person).filter_by(person_source_value="0009456b")
+    person: cdm54.Person = session.scalars(statement).one()
+    conditions = person.condition_occurrences
+
+    for c in conditions:
+        print(c.condition_start_date, c.condition_concept.concept_name)
+```
