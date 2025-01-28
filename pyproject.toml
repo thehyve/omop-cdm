@@ -1,11 +1,12 @@
-[tool.poetry]
+[project]
 name = "omop-cdm"
-version = "0.3.0"
+version = "0.3.1"
 description = "SQLAlchemy ORM of the OHDSI OMOP CDM"
 authors = [
-    "Spayralbe <stefan@thehyve.nl>",
+    {name = "Spayralbe", email = "stefan@thehyve.nl"},
 ]
 readme = "README.md"
+requires-python = ">=3.9,<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
@@ -20,33 +21,30 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: Implementation :: CPython",
 ]
+dependencies = [
+    "sqlalchemy >= 2.0",
+]
 
-[tool.poetry.urls]
+[project.urls]
 "Repository" = "https://github.com/thehyve/omop-cdm"
 "Documentation" = "https://github.com/thehyve/omop-cdm/blob/main/docs/README.md"
 "Bug Tracker" = "https://github.com/thehyve/omop-cdm/issues"
 "Changelog" = "https://github.com/thehyve/omop-cdm/blob/main/CHANGELOG.md"
 
-[tool.poetry.dependencies]
-python = "^3.9"
-sqlalchemy = "^2.0.4"
-
 [tool.poetry.group.dev.dependencies]
-nox = "^2024.4.15"
-ruff = "^0.3.2"
-pre-commit = "^3.5.0"
+nox = "^2024.10.9"
+ruff = "^0.9.3"
+pre-commit = "^4.1.0"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.1.1"
-pytest-cov = "^4.1.0"
-testcontainers = {version = ">=3.7.1", extras = ["postgres"]}
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+testcontainers = "^4.9.1"
 psycopg2-binary = "^2.9.9"
 
-
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0"]
 build-backend = "poetry.core.masonry.api"
-
 
 [tool.pytest.ini_options]
 addopts = "--import-mode=importlib"

@@ -2,7 +2,7 @@
 
 import datetime
 import decimal
-from typing import List, Optional
+from typing import Optional
 
 from sqlalchemy import BigInteger, Date, DateTime, ForeignKey, Integer, Numeric, String, Text
 from sqlalchemy.ext.declarative import declared_attr
@@ -229,39 +229,39 @@ class BasePersonCdm54:
         return relationship("Concept", foreign_keys="Person.race_source_concept_id")
 
     @declared_attr
-    def observation_periods(cls) -> Mapped[List["ObservationPeriod"]]:
+    def observation_periods(cls) -> Mapped[list["ObservationPeriod"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def visit_occurrences(cls) -> Mapped[List["VisitOccurrence"]]:
+    def visit_occurrences(cls) -> Mapped[list["VisitOccurrence"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def visit_details(cls) -> Mapped[List["VisitDetail"]]:
+    def visit_details(cls) -> Mapped[list["VisitDetail"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def condition_occurrences(cls) -> Mapped[List["ConditionOccurrence"]]:
+    def condition_occurrences(cls) -> Mapped[list["ConditionOccurrence"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def drug_exposures(cls) -> Mapped[List["DrugExposure"]]:
+    def drug_exposures(cls) -> Mapped[list["DrugExposure"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def procedure_occurrences(cls) -> Mapped[List["ProcedureOccurrence"]]:
+    def procedure_occurrences(cls) -> Mapped[list["ProcedureOccurrence"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def device_exposures(cls) -> Mapped[List["DeviceExposure"]]:
+    def device_exposures(cls) -> Mapped[list["DeviceExposure"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def measurements(cls) -> Mapped[List["Measurement"]]:
+    def measurements(cls) -> Mapped[list["Measurement"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def observations(cls) -> Mapped[List["Observation"]]:
+    def observations(cls) -> Mapped[list["Observation"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
@@ -269,31 +269,31 @@ class BasePersonCdm54:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def notes(cls) -> Mapped[List["Note"]]:
+    def notes(cls) -> Mapped[list["Note"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def specimens(cls) -> Mapped[List["Specimen"]]:
+    def specimens(cls) -> Mapped[list["Specimen"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def payer_plan_periods(cls) -> Mapped[List["PayerPlanPeriod"]]:
+    def payer_plan_periods(cls) -> Mapped[list["PayerPlanPeriod"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def drug_eras(cls) -> Mapped[List["DrugEra"]]:
+    def drug_eras(cls) -> Mapped[list["DrugEra"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def dose_eras(cls) -> Mapped[List["DoseEra"]]:
+    def dose_eras(cls) -> Mapped[list["DoseEra"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def condition_eras(cls) -> Mapped[List["ConditionEra"]]:
+    def condition_eras(cls) -> Mapped[list["ConditionEra"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
     @declared_attr
-    def episodes(cls) -> Mapped[List["Episode"]]:
+    def episodes(cls) -> Mapped[list["Episode"]]:
         return relationship(back_populates="person", cascade="all, delete-orphan")
 
 
