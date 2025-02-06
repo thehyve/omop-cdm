@@ -16,11 +16,13 @@ from omop_cdm.constants import (
     FK_VOCABULARY_ID,
     VOCAB_SCHEMA,
 )
+from omop_cdm.util import record_as_str
 
 
 class BaseConceptCdm54:
     __tablename__ = "concept"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     concept_id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True, sort_order=100)
     concept_name: Mapped[str] = mapped_column(String(255), sort_order=200)
@@ -49,6 +51,7 @@ class BaseConceptCdm54:
 class BaseConceptClassCdm54:
     __tablename__ = "concept_class"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     concept_class_id: Mapped[str] = mapped_column(String(20), primary_key=True, index=True, sort_order=100)
     concept_class_name: Mapped[str] = mapped_column(String(255), sort_order=200)
@@ -62,6 +65,7 @@ class BaseConceptClassCdm54:
 class BaseDomainCdm54:
     __tablename__ = "domain"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     domain_id: Mapped[str] = mapped_column(String(20), primary_key=True, index=True, sort_order=100)
     domain_name: Mapped[str] = mapped_column(String(255), sort_order=200)
@@ -75,6 +79,7 @@ class BaseDomainCdm54:
 class BaseVocabularyCdm54:
     __tablename__ = "vocabulary"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     vocabulary_id: Mapped[str] = mapped_column(String(20), primary_key=True, index=True, sort_order=100)
     vocabulary_name: Mapped[str] = mapped_column(String(255), sort_order=200)
@@ -90,6 +95,7 @@ class BaseVocabularyCdm54:
 class BaseConceptAncestorCdm54:
     __tablename__ = "concept_ancestor"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     ancestor_concept_id: Mapped[int] = mapped_column(
         ForeignKey(FK_CONCEPT_ID), primary_key=True, index=True, sort_order=100
@@ -112,6 +118,7 @@ class BaseConceptAncestorCdm54:
 class BaseConceptSynonymCdm54:
     __tablename__ = "concept_synonym"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, index=True, sort_order=100)
     concept_synonym_name: Mapped[str] = mapped_column(String(1000), primary_key=True, sort_order=200)
@@ -129,6 +136,7 @@ class BaseConceptSynonymCdm54:
 class BaseDrugStrengthCdm54:
     __tablename__ = "drug_strength"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     drug_concept_id: Mapped[int] = mapped_column(
         ForeignKey(FK_CONCEPT_ID), primary_key=True, index=True, sort_order=100
@@ -171,6 +179,7 @@ class BaseDrugStrengthCdm54:
 class BaseRelationshipCdm54:
     __tablename__ = "relationship"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     relationship_id: Mapped[str] = mapped_column(String(20), primary_key=True, sort_order=100)
     relationship_name: Mapped[str] = mapped_column(String(255), sort_order=200)
@@ -193,6 +202,7 @@ class BaseRelationshipCdm54:
 class BaseConceptRelationshipCdm54:
     __tablename__ = "concept_relationship"
     __table_args__ = {"schema": VOCAB_SCHEMA}
+    __repr__ = record_as_str
 
     concept_id_1: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, index=True, sort_order=100)
     concept_id_2: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, index=True, sort_order=200)
@@ -219,6 +229,7 @@ class BaseConceptRelationshipCdm54:
 class BaseSourceToConceptMapCdm54:
     __tablename__ = "source_to_concept_map"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     source_code: Mapped[str] = mapped_column(String(1000), primary_key=True, index=True, sort_order=100)
     source_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=200)
@@ -254,6 +265,7 @@ class BaseSourceToConceptMapCdm54:
 class BaseSourceToConceptMapVersionCdm54:
     __tablename__ = "source_to_concept_map_version"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     source_vocabulary_id: Mapped[str] = mapped_column(ForeignKey(FK_VOCABULARY_ID), primary_key=True, sort_order=100)
     stcm_version: Mapped[str] = mapped_column(String(255), sort_order=200)

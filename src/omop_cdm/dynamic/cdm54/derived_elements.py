@@ -9,11 +9,13 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from omop_cdm.constants import CDM_SCHEMA, FK_CONCEPT_ID, FK_PERSON_ID
+from omop_cdm.util import record_as_str
 
 
 class BaseConditionEraCdm54:
     __tablename__ = "condition_era"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     condition_era_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -34,6 +36,7 @@ class BaseConditionEraCdm54:
 class BaseDoseEraCdm54:
     __tablename__ = "dose_era"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     dose_era_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -59,6 +62,7 @@ class BaseDoseEraCdm54:
 class BaseDrugEraCdm54:
     __tablename__ = "drug_era"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     drug_era_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -80,6 +84,7 @@ class BaseDrugEraCdm54:
 class BaseEpisodeCdm54:
     __tablename__ = "episode"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     episode_id: Mapped[int] = mapped_column(BigInteger, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), sort_order=200)
@@ -119,6 +124,7 @@ class BaseEpisodeCdm54:
 class BaseEpisodeEventCdm54:
     __tablename__ = "episode_event"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     episode_id: Mapped[int] = mapped_column(
         ForeignKey(f"{CDM_SCHEMA}.episode.episode_id", ondelete="CASCADE"), primary_key=True, sort_order=100

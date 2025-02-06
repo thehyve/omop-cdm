@@ -9,11 +9,13 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from omop_cdm.constants import CDM_SCHEMA, FK_CONCEPT_ID, FK_DOMAIN_ID, FK_PERSON_ID
+from omop_cdm.util import record_as_str
 
 
 class BasePayerPlanPeriodCdm54:
     __tablename__ = "payer_plan_period"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     payer_plan_period_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -73,6 +75,7 @@ class BasePayerPlanPeriodCdm54:
 class BaseCostCdm54:
     __tablename__ = "cost"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     cost_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     cost_event_id: Mapped[int] = mapped_column(Integer, index=True, sort_order=200)
