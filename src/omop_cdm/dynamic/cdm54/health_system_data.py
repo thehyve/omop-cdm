@@ -8,11 +8,13 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from omop_cdm.constants import CDM_SCHEMA, FK_CARE_SITE_ID, FK_CONCEPT_ID, FK_LOCATION_ID
+from omop_cdm.util import record_as_str
 
 
 class BaseCareSiteCdm54:
     __tablename__ = "care_site"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     care_site_id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True, sort_order=100)
     care_site_name: Mapped[Optional[str]] = mapped_column(String(255), sort_order=200)
@@ -33,6 +35,7 @@ class BaseCareSiteCdm54:
 class BaseLocationCdm54:
     __tablename__ = "location"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     location_id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True, sort_order=100)
     address_1: Mapped[Optional[str]] = mapped_column(String(50), sort_order=200)
@@ -55,6 +58,7 @@ class BaseLocationCdm54:
 class BaseProviderCdm54:
     __tablename__ = "provider"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     provider_id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True, sort_order=100)
     provider_name: Mapped[Optional[str]] = mapped_column(String(255), sort_order=200)
