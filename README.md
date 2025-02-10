@@ -1,5 +1,9 @@
 # omop-cdm
 
+[![tests](https://github.com/thehyve/omop-cdm/actions/workflows/python-package.yml/badge.svg)](https://github.com/thehyve/omop-cdm/actions/workflows/python-package.yml)
+[![PyPI Latest Release](https://img.shields.io/pypi/v/omop-cdm.svg)](https://pypi.org/project/omop-cdm/)
+[![License](https://img.shields.io/pypi/l/omop-cdm.svg)](https://github.com/thehyve/omop-cdm/blob/main/LICENSE)
+
 omop-cdm is a Python package that contains SQLAlchemy declarative table definitions of several
 versions of the [OHDSI OMOP CDM](https://ohdsi.github.io/CommonDataModel/).
 
