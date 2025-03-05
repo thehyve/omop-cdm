@@ -907,7 +907,7 @@ class BaseStemTableCdm54:
     __repr__ = record_as_str
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
-    domain_id: Mapped[Optional[str]] = mapped_column(ForeignKey(FK_DOMAIN_ID), sort_order=200)
+    domain_id: Mapped[str] = mapped_column(ForeignKey(FK_DOMAIN_ID), index=True, sort_order=200)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=300)
     concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=400)
     start_date: Mapped[Optional[datetime.date]] = mapped_column(Date, sort_order=500)
