@@ -48,3 +48,14 @@ For a complete list, run:
 ```shell
 nox --list
 ```
+
+### Releasing
+
+omop-cdm uses [semantic versioning](https://semver.org/).
+
+Releases should be made from the main branch. Before creating a release on
+GitHub, make sure the CHANGELOG has been updated and the version number in
+pyproject.toml is correct.
+
+Once the GitHub release has been made, the package will be automatically uploaded
+to PyPI (via the publish.yml workflow).
