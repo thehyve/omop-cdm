@@ -4,6 +4,7 @@ version = "0.3.1"
 description = "SQLAlchemy ORM of the OHDSI OMOP CDM"
 authors = [
     {name = "Spayralbe", email = "stefan@thehyve.nl"},
+    {name = "guuswilmink", email = guus@thehyve.nl},
 ]
 readme = "README.md"
 license = {text = "Apache Software License"}
