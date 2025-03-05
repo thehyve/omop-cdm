@@ -2,7 +2,7 @@
 
 ## v0.4.0
 
-Internal changes:
+New:
 - The stem_table.domain_id field has been made non-nullable for CDM 5.3, 5.4, and 6.0.
 
 ## v0.3.2
