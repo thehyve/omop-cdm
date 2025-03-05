@@ -1,9 +1,13 @@
 # Changelog
 
-## v0.3.2
+## v0.4.0
 
 Internal changes:
 - The stem_table.domain_id field has been made non-nullable for CDM 5.3, 5.4, and 6.0.
+
+## v0.3.2
+
+Added `__repr__` methods to all CDM 5.4 table classes.
 
 ## v0.3.1
 

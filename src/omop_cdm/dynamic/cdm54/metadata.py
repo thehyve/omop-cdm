@@ -9,11 +9,13 @@ from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from omop_cdm.constants import CDM_SCHEMA, FK_CONCEPT_ID
+from omop_cdm.util import record_as_str
 
 
 class BaseCdmSourceCdm54:
     __tablename__ = "cdm_source"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     cdm_source_name: Mapped[str] = mapped_column(String(255), primary_key=True, sort_order=100)
     cdm_source_abbreviation: Mapped[str] = mapped_column(String(25), sort_order=200)
@@ -35,6 +37,7 @@ class BaseCdmSourceCdm54:
 class BaseMetadataCdm54:
     __tablename__ = "metadata"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     metadata_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     metadata_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=200)

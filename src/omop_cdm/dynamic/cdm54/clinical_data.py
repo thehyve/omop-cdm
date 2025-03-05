@@ -19,11 +19,13 @@ from omop_cdm.constants import (
     FK_VISIT_DETAIL_ID,
     FK_VISIT_OCCURRENCE_ID,
 )
+from omop_cdm.util import record_as_str
 
 
 class BaseConditionOccurrenceCdm54:
     __tablename__ = "condition_occurrence"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     condition_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -80,6 +82,7 @@ class BaseConditionOccurrenceCdm54:
 class BaseDeathCdm54:
     __tablename__ = "death"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     person_id: Mapped[int] = mapped_column(
         ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), primary_key=True, index=True, sort_order=100
@@ -111,6 +114,7 @@ class BaseDeathCdm54:
 class BaseFactRelationshipCdm54:
     __tablename__ = "fact_relationship"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     domain_concept_id_1: Mapped[int] = mapped_column(
         ForeignKey(FK_CONCEPT_ID), primary_key=True, index=True, sort_order=100
@@ -140,6 +144,7 @@ class BaseFactRelationshipCdm54:
 class BaseNoteNlpCdm54:
     __tablename__ = "note_nlp"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     note_nlp_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     note_id: Mapped[int] = mapped_column(Integer, index=True, sort_order=200)
@@ -172,6 +177,7 @@ class BaseNoteNlpCdm54:
 class BasePersonCdm54:
     __tablename__ = "person"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     person_id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True, sort_order=100)
     gender_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True, sort_order=200)
@@ -300,6 +306,7 @@ class BasePersonCdm54:
 class BaseObservationPeriodCdm54:
     __tablename__ = "observation_period"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     observation_period_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -319,6 +326,7 @@ class BaseObservationPeriodCdm54:
 class BaseSpecimenCdm54:
     __tablename__ = "specimen"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     specimen_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -364,6 +372,7 @@ class BaseSpecimenCdm54:
 class BaseVisitOccurrenceCdm54:
     __tablename__ = "visit_occurrence"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     visit_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -425,6 +434,7 @@ class BaseVisitOccurrenceCdm54:
 class BaseVisitDetailCdm54:
     __tablename__ = "visit_detail"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     visit_detail_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -494,6 +504,7 @@ class BaseVisitDetailCdm54:
 class BaseDeviceExposureCdm54:
     __tablename__ = "device_exposure"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     device_exposure_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -557,6 +568,7 @@ class BaseDeviceExposureCdm54:
 class BaseDrugExposureCdm54:
     __tablename__ = "drug_exposure"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     drug_exposure_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -620,6 +632,7 @@ class BaseDrugExposureCdm54:
 class BaseMeasurementCdm54:
     __tablename__ = "measurement"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     measurement_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -699,6 +712,7 @@ class BaseMeasurementCdm54:
 class BaseNoteCdm54:
     __tablename__ = "note"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     note_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -759,6 +773,7 @@ class BaseNoteCdm54:
 class BaseObservationCdm54:
     __tablename__ = "observation"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     observation_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -832,6 +847,7 @@ class BaseObservationCdm54:
 class BaseProcedureOccurrenceCdm54:
     __tablename__ = "procedure_occurrence"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     procedure_occurrence_id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True, sort_order=200)
@@ -888,6 +904,7 @@ class BaseProcedureOccurrenceCdm54:
 class BaseStemTableCdm54:
     __tablename__ = "stem_table"
     __table_args__ = {"schema": CDM_SCHEMA}
+    __repr__ = record_as_str
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, sort_order=100)
     domain_id: Mapped[str] = mapped_column(ForeignKey(FK_DOMAIN_ID), index=True, sort_order=200)
