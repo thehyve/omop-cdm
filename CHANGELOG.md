@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.2
+
+Added `__repr__` methods to all CDM 5.4 table classes.
+
 ## v0.3.1
 
 Internal changes:
