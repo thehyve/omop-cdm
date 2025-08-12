@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.1
+
+Internal changes:
+- Replaced deprecated use of `datetime.datetime.utcnow`.
+
 ## v0.4.0
 
 New:

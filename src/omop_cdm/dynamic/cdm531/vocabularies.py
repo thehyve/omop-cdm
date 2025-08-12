@@ -16,6 +16,7 @@ from omop_cdm.constants import (
     FK_VOCABULARY_ID,
     VOCAB_SCHEMA,
 )
+from omop_cdm.util import get_current_time_utc
 
 
 class BaseConceptCdm531:
@@ -253,9 +254,7 @@ class BaseSourceToConceptMapVersionCdm531:
 
     source_vocabulary_id: Mapped[str] = mapped_column(ForeignKey(FK_VOCABULARY_ID), primary_key=True, sort_order=100)
     stcm_version: Mapped[str] = mapped_column(String(255), sort_order=200)
-    last_upload_date: Mapped[datetime.datetime] = mapped_column(
-        DateTime, default=datetime.datetime.utcnow, sort_order=300
-    )
+    last_upload_date: Mapped[datetime.datetime] = mapped_column(DateTime, default=get_current_time_utc, sort_order=300)
 
     @declared_attr
     def source_vocabulary(cls) -> Mapped["Vocabulary"]:
