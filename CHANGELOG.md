@@ -4,6 +4,7 @@
 
 Internal changes:
 - Replaced deprecated use of `datetime.datetime.utcnow`.
+- Updated dev dependencies.
 
 ## v0.4.0
 
