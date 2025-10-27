@@ -1,3 +1,5 @@
+import datetime
+
 from sqlalchemy.orm import DeclarativeBase
 
 
@@ -14,3 +16,7 @@ def record_as_str(record: DeclarativeBase) -> str:
             )
         })"""
     )
+
+
+def get_current_time_utc() -> datetime.datetime:
+    return datetime.datetime.now(tz=datetime.UTC)
