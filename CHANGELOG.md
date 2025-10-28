@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.4.2
+
+Bugfixes
+- Replaced use of datetime.UTC to support Python version <3.12.
+
+Updates
+- Added support Python 3.14.
+
+Internal changes:
+- Updated ruff to 0.14.2.
+
 ## v0.4.1
 
 Internal changes:
