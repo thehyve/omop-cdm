@@ -19,4 +19,4 @@ def record_as_str(record: DeclarativeBase) -> str:
 
 
 def get_current_time_utc() -> datetime.datetime:
-    return datetime.datetime.now(tz=datetime.UTC)
+    return datetime.datetime.now(tz=datetime.timezone.utc)
