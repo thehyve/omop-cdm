@@ -1,7 +1,7 @@
-from datetime import date
+from datetime import date, datetime
 
 from omop_cdm.regular.cdm54 import ObservationPeriod
-from omop_cdm.util import record_as_str
+from omop_cdm.util import get_current_time_utc, record_as_str
 
 
 def test_record_is_converted_to_expected_string():
@@ -18,3 +18,8 @@ def test_record_is_converted_to_expected_string():
     # which in turn runs record_as_str. The result should therefore be
     # the same.
     assert str(op_record) == expected_string
+
+
+def test_get_utc_time():
+    utc_time = get_current_time_utc()
+    assert isinstance(utc_time, datetime)

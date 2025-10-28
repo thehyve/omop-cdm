@@ -29,6 +29,10 @@ select = [
     # isort
     "I",
 ]
+ignore = [
+    # Allow use of `Optional` for types
+    "UP045",
+]
 
 [lint.isort]
 known-first-party = ["omop_cdm"]
