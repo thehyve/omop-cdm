@@ -35,7 +35,7 @@ dependencies = [
 
 [tool.poetry.group.dev.dependencies]
 nox = "^2025.5.1"
-ruff = "^0.12.8"
+ruff = "^0.14.2"
 pre-commit = "^4.3.0"
 
 [tool.poetry.group.test.dependencies]
