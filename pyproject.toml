@@ -1,6 +1,6 @@
 [project]
 name = "omop-cdm"
-version = "0.4.2"
+version = "0.4.3"
 description = "SQLAlchemy ORM of the OHDSI OMOP CDM"
 authors = [
     {name = "Spayralbe", email = "stefan@thehyve.nl"},

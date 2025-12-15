@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.3
+
+Bugfixes
+- Made Stem Table startdate non-optional.
+
 ## v0.4.2
 
 Bugfixes
