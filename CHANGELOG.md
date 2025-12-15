@@ -1,9 +1,14 @@
 # Changelog
 
+## v0.4.3
+
+Bugfixes
+- Made Stem Table startdate non-optional.
+
 ## v0.4.2
 
 Bugfixes
-- Replaced use of datetime.UTC to support Python version <3.12.
+- Replaced use of datetime.UTC to support Python version <3.12>.
 
 Updates
 - Added support Python 3.14, minimum version upgraded from 3.9 to 3.9.2.
