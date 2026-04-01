@@ -25,7 +25,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
-    "sqlalchemy (>=2.0.41,<3.0.0)"
+    "sqlalchemy (>=2.0.48,<3.0.0)"
 ]
 
 [project.urls]
@@ -35,8 +35,8 @@ dependencies = [
 "Changelog" = "https://github.com/thehyve/omop-cdm/blob/main/CHANGELOG.md"
 
 [tool.poetry.group.dev.dependencies]
-nox = "^2025.5.1"
-ruff = "^0.14.2"
+nox = "^2026.2.9"
+ruff = "^0.15.9"
 pre-commit = "^4.3.0"
 
 [tool.poetry.group.test.dependencies]

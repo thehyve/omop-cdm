@@ -16,10 +16,11 @@ from omop_cdm.constants import (
     FK_VOCABULARY_ID,
     VOCAB_SCHEMA,
 )
+from omop_cdm.relationship_mixins import ConceptRelationships
 from omop_cdm.util import get_current_time_utc, record_as_str
 
 
-class BaseConceptCdm54:
+class BaseConceptCdm54(ConceptRelationships):
     __tablename__ = "concept"
     __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
