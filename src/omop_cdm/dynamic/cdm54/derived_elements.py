@@ -2,7 +2,7 @@
 
 import datetime
 import decimal
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from sqlalchemy import BigInteger, Date, DateTime, ForeignKey, Integer, Numeric, String
 from sqlalchemy.ext.declarative import declared_attr

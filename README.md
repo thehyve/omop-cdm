@@ -9,7 +9,7 @@ versions of the [OHDSI OMOP CDM](https://ohdsi.github.io/CommonDataModel/).
 
 ## Installation
 
-omop-cdm requires Python >= 3.9.
+omop-cdm requires Python >= 3.10.
 
 Install from PyPI:
 ```shell

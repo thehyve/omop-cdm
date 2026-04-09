@@ -1,5 +1,5 @@
+from collections.abc import Callable
 from contextlib import contextmanager
-from typing import Callable
 
 import pytest
 from sqlalchemy import Connection, Engine, MetaData, create_engine, select
