@@ -7,6 +7,8 @@
 omop-cdm is a Python package that contains SQLAlchemy declarative table definitions of several
 versions of the [OHDSI OMOP CDM](https://ohdsi.github.io/CommonDataModel/).
 
+It can be used for both data mapping and data analysis/exploration workflows.
+
 ## Installation
 
 omop-cdm requires Python >= 3.10.
@@ -32,30 +34,7 @@ omop-cdm contains table defintions for the following CDM versions:
 - CDM 5.3.1
 - CDM 6.0.0 ([not recommended](https://ohdsi.github.io/CommonDataModel/cdm60.html#NOTE_ABOUT_CDM_v60))
 
-## Development
-
-### Setup steps
-
-- Make sure [Poetry](https://python-poetry.org/docs/#installation) is installed.
-- Install the project and dependencies via `poetry install`.
-- Set up the pre-commit hook scripts via `poetry run pre-commit install`.
-
-### Nox sessions
-
-Several developer actions (e.g. run tests, code format, lint) are available
-via [nox](https://nox.thea.codes/en/stable/) sessions.
-For a complete list, run:
-```shell
-nox --list
-```
-
-### Releasing
-
-omop-cdm uses [semantic versioning](https://semver.org/).
-
-Releases should be made from the main branch. Before creating a release on
-GitHub, make sure the CHANGELOG has been updated and the version number in
-pyproject.toml is correct.
-
-Once the GitHub release has been made, the package will be automatically uploaded
-to PyPI (via the publish.yml workflow).
+## Getting Involved
+- Any bugs, issues or ideas for improvement can be submitted via the
+  GitHub [Issues](https://github.com/thehyve/omop-cdm/issues) page.
+- If you are developing on the project, please see the [contributing](CONTRIBUTING.md) guide.

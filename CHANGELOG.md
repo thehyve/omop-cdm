@@ -7,6 +7,7 @@ New:
 
 Updates
 - Dropped support for Python 3.9.
+- Added a contributing guide.
 
 Internal changes:
 - Updated dev dependencies.
