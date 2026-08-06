@@ -4,8 +4,8 @@ import datetime
 import decimal
 from typing import Optional
 
-from sqlalchemy import BigInteger, Date, DateTime, ForeignKey, Integer, MetaData, Numeric, String, Text
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy import BigInteger, Date, DateTime, ForeignKey, Integer, MetaData, Numeric, String, Text, select
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, object_session, relationship
 
 from omop_cdm import NAMING_CONVENTION
 from omop_cdm.constants import (
@@ -22,6 +22,7 @@ from omop_cdm.constants import (
     FK_VOCABULARY_ID,
     VOCAB_SCHEMA,
 )
+from omop_cdm.relationship_mixins import ConceptRelationships
 from omop_cdm.util import record_as_str
 
 
@@ -32,7 +33,7 @@ class Base(DeclarativeBase):
 Base.metadata = MetaData(naming_convention=NAMING_CONVENTION)
 
 
-class Concept(Base):
+class Concept(Base, ConceptRelationships):
     __tablename__ = "concept"
     __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
@@ -891,6 +892,13 @@ class Episode(Base):
     episode_type_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Episode.episode_type_concept_id")
     person: Mapped["Person"] = relationship("Person", foreign_keys="Episode.person_id")
 
+    events: Mapped[list["EpisodeEvent"]] = relationship(back_populates="episode")
+
+
+_EventRecord = (
+    DrugExposure | ConditionOccurrence | ProcedureOccurrence | DeviceExposure | Measurement | Observation | None
+)
+
 
 class EpisodeEvent(Base):
     __tablename__ = "episode_event"
@@ -907,6 +915,24 @@ class EpisodeEvent(Base):
         "Concept", foreign_keys="EpisodeEvent.episode_event_field_concept_id"
     )
     episode: Mapped["Episode"] = relationship("Episode", foreign_keys="EpisodeEvent.episode_id")
+
+    @property
+    def event_record(self) -> _EventRecord:
+        if self.episode_event_field_concept_id == 1147094:
+            stmt = select(DrugExposure).where(DrugExposure.drug_exposure_id == self.event_id)
+        elif self.episode_event_field_concept_id == 1147127:
+            stmt = select(ConditionOccurrence).where(ConditionOccurrence.condition_occurrence_id == self.event_id)
+        elif self.episode_event_field_concept_id == 1147082:
+            stmt = select(ProcedureOccurrence).where(ProcedureOccurrence.procedure_occurrence_id == self.event_id)
+        elif self.episode_event_field_concept_id == 1147115:
+            stmt = select(DeviceExposure).where(DeviceExposure.device_exposure_id == self.event_id)
+        elif self.episode_event_field_concept_id == 1147138:
+            stmt = select(Measurement).where(Measurement.measurement_id == self.event_id)
+        elif self.episode_event_field_concept_id == 1147165:
+            stmt = select(Observation).where(Observation.observation_id == self.event_id)
+        else:
+            return None
+        return object_session(self).scalar(stmt)
 
 
 class PayerPlanPeriod(Base):

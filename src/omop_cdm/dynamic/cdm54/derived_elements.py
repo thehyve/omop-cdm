@@ -2,7 +2,7 @@
 
 import datetime
 import decimal
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from sqlalchemy import BigInteger, Date, DateTime, ForeignKey, Integer, Numeric, String
 from sqlalchemy.ext.declarative import declared_attr
@@ -10,6 +10,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from omop_cdm.constants import CDM_SCHEMA, FK_CONCEPT_ID, FK_PERSON_ID
 from omop_cdm.util import record_as_str
+
+if TYPE_CHECKING:
+    from omop_cdm.regular.cdm54 import Concept, Episode, EpisodeEvent
 
 
 class BaseConditionEraCdm54:
@@ -119,6 +122,10 @@ class BaseEpisodeCdm54:
     @declared_attr
     def person(cls) -> Mapped["Person"]:
         return relationship("Person", foreign_keys="Episode.person_id")
+
+    @declared_attr
+    def events(cls) -> Mapped[list["EpisodeEvent"]]:
+        return relationship(back_populates="episode")
 
 
 class BaseEpisodeEventCdm54:

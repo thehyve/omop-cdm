@@ -1,21 +1,15 @@
 import nox  # type: ignore
 
+PYPROJECT = nox.project.load_toml("pyproject.toml")
+PYTHON_VERSIONS = nox.project.python_versions(PYPROJECT)
+
 nox.options.sessions = [
     "tests",
     "lint",
 ]
 
-python = [
-    "3.9",
-    "3.10",
-    "3.11",
-    "3.12",
-    "3.13",
-    "3.14",
-]
 
-
-@nox.session(python=python)
+@nox.session(python=PYTHON_VERSIONS)
 def tests(session: nox.Session):
     """Run pytest + code coverage."""
     session.run("poetry", "install", external=True)

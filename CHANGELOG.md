@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.5.0
+
+New:
+- Expanded Concept and Episode/EpisodeEvent relationships for easier analytics.
+
+Updates
+- Dropped support for Python 3.9.
+- Added a contributing guide.
+
+Internal changes:
+- Updated dev dependencies.
+
 ## v0.4.3
 
 Bugfixes

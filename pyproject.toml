@@ -1,6 +1,6 @@
 [project]
 name = "omop-cdm"
-version = "0.4.3"
+version = "0.5.0"
 description = "SQLAlchemy ORM of the OHDSI OMOP CDM"
 authors = [
     {name = "Spayralbe", email = "stefan@thehyve.nl"},
@@ -8,7 +8,7 @@ authors = [
 ]
 readme = "README.md"
 license = {text = "Apache Software License"}
-requires-python = ">=3.9.2,<4.0"
+requires-python = ">=3.10,<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
@@ -16,7 +16,6 @@ classifiers = [
     "Natural Language :: English",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -25,7 +24,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 dependencies = [
-    "sqlalchemy (>=2.0.41,<3.0.0)"
+    "sqlalchemy (>=2.0.48,<3.0.0)"
 ]
 
 [project.urls]
@@ -35,9 +34,9 @@ dependencies = [
 "Changelog" = "https://github.com/thehyve/omop-cdm/blob/main/CHANGELOG.md"
 
 [tool.poetry.group.dev.dependencies]
-nox = "^2025.5.1"
-ruff = "^0.14.2"
-pre-commit = "^4.3.0"
+nox = "^2026.2.9"
+ruff = "^0.15.9"
+pre-commit = "^4.5.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.4.1"
