@@ -79,6 +79,7 @@ class Base(DeclarativeBase):
 class Person(cdm54.BasePersonCdm54, Base):
     pass
 
+
 # Etc. for all other tables
 ```
 This approach allows for the greatest customization possibilities.
@@ -162,6 +163,7 @@ E.g. for the person table:
 ```python
 from omop_cdm.constants import CDM_SCHEMA
 
+
 class Person(Base):
     __tablename__ = "person"
     __table_args__ = {"schema": CDM_SCHEMA}
@@ -185,10 +187,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 
 class Narcissus(Base):
-    __tablename__ = 'narcissus'
-    __table_args__ = {'schema': CDM_SCHEMA}
+    __tablename__ = "narcissus"
+    __table_args__ = {"schema": CDM_SCHEMA}
 
-    person_id: Mapped[int] = mapped_column(ForeignKey('cdm_schema.person.person_id'))
+    person_id: Mapped[int] = mapped_column(ForeignKey("cdm_schema.person.person_id"))
     loved_by_narcissus: Mapped[bool] = mapped_column(Boolean, default=False)
 
     person: Mapped["Person"] = relationship("Person")

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.6.0
+
+Internal changes:
+- Updated GitHub Actions.
+- Updated dev dependencies.
+
 ## v0.5.0
 
 New:

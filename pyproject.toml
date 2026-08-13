@@ -1,6 +1,6 @@
 [project]
 name = "omop-cdm"
-version = "0.5.0"
+version = "0.6.0"
 description = "SQLAlchemy ORM of the OHDSI OMOP CDM"
 authors = [
     {name = "Spayralbe", email = "stefan@thehyve.nl"},
@@ -34,15 +34,15 @@ dependencies = [
 "Changelog" = "https://github.com/thehyve/omop-cdm/blob/main/CHANGELOG.md"
 
 [tool.poetry.group.dev.dependencies]
-nox = "^2026.2.9"
-ruff = "^0.15.9"
-pre-commit = "^4.5.1"
+nox = "^2026.8.10"
+ruff = "^0.16.2"
+pre-commit = "^4.6.2"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.4.1"
-pytest-cov = "^6.2.1"
-testcontainers = "^4.13.2"
-psycopg2-binary = "^2.9.9"
+pytest = "^9.1.1"
+pytest-cov = "^7.1.0"
+testcontainers = "^4.15.0"
+psycopg2-binary = "^2.9.12"
 
 [build-system]
 requires = ["poetry-core>=2.0"]

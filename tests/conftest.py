@@ -5,7 +5,7 @@ import pytest
 from sqlalchemy import Connection, Engine, MetaData, create_engine, select
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.ddl import CreateSchema, DropSchema
-from testcontainers.postgres import PostgresContainer
+from testcontainers.community.postgres import PostgresContainer
 
 POSTGRES_IMAGE = "postgres:16-alpine"
 
