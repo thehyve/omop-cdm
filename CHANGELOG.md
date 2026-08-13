@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.6.0
+
+Updates
+- To align with CDM 5.4.1, the start/end date fields of condition, drug, and dose
+  era tables in 5.4 are now DATE fields instead of DATETIME.
+
+Internal changes:
+- Updated GitHub Actions.
+- Updated dev dependencies.
+
 ## v0.5.0
 
 New:
