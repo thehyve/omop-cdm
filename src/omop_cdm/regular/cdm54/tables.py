@@ -820,8 +820,8 @@ class ConditionEra(Base):
     condition_era_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     condition_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
-    condition_era_start_date: Mapped[datetime.datetime] = mapped_column(DateTime)
-    condition_era_end_date: Mapped[datetime.datetime] = mapped_column(DateTime)
+    condition_era_start_date: Mapped[datetime.date] = mapped_column(Date)
+    condition_era_end_date: Mapped[datetime.date] = mapped_column(Date)
     condition_occurrence_count: Mapped[Optional[int]] = mapped_column(Integer)
 
     condition_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="ConditionEra.condition_concept_id")
@@ -838,8 +838,8 @@ class DoseEra(Base):
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
     unit_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID))
     dose_value: Mapped[decimal.Decimal] = mapped_column(Numeric)
-    dose_era_start_date: Mapped[datetime.datetime] = mapped_column(DateTime)
-    dose_era_end_date: Mapped[datetime.datetime] = mapped_column(DateTime)
+    dose_era_start_date: Mapped[datetime.date] = mapped_column(Date)
+    dose_era_end_date: Mapped[datetime.date] = mapped_column(Date)
 
     drug_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="DoseEra.drug_concept_id")
     person: Mapped["Person"] = relationship("Person", foreign_keys="DoseEra.person_id")
@@ -854,8 +854,8 @@ class DrugEra(Base):
     drug_era_id: Mapped[int] = mapped_column(Integer, primary_key=True)
     person_id: Mapped[int] = mapped_column(ForeignKey(FK_PERSON_ID, ondelete="CASCADE"), index=True)
     drug_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), index=True)
-    drug_era_start_date: Mapped[datetime.datetime] = mapped_column(DateTime)
-    drug_era_end_date: Mapped[datetime.datetime] = mapped_column(DateTime)
+    drug_era_start_date: Mapped[datetime.date] = mapped_column(Date)
+    drug_era_end_date: Mapped[datetime.date] = mapped_column(Date)
     drug_exposure_count: Mapped[Optional[int]] = mapped_column(Integer)
     gap_days: Mapped[Optional[int]] = mapped_column(Integer)
 
