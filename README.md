@@ -38,4 +38,4 @@ omop-cdm contains table definitions for the following CDM versions:
 ## Getting Involved
 - Any bugs, issues or ideas for improvement can be submitted via the
   GitHub [Issues](https://github.com/thehyve/omop-cdm/issues) page.
-- If you are developing on the project, please see the [contributing](CONTRIBUTING.md) guide.
+- If you are developing on the project, please see the [contributing](https://github.com/thehyve/omop-cdm/blob/main/CONTRIBUTING.md) guide.
