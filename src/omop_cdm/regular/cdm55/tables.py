@@ -821,8 +821,7 @@ class Observation(Base):
     provider: Mapped["Provider"] = relationship("Provider", foreign_keys="Observation.provider_id")
     qualifier_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.qualifier_concept_id")
     unit_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.unit_concept_id")
-    unit_source_concept: Mapped["Concept"] = relationship(
-        "Concept", foreign_keys="Observation.unit_source_concept_id")
+    unit_source_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.unit_source_concept_id")
     value_as_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.value_as_concept_id")
     value_as_source_concept: Mapped["Concept"] = relationship(
         "Concept", foreign_keys="Observation.value_as_source_concept_id"

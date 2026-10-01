@@ -45,8 +45,8 @@ from src.omop_cdm.dynamic.cdm55.vocabularies.vocabularies import (
     BaseConceptCdm55,
     BaseConceptClassCdm55,
     BaseConceptMetadataCdm55,
-    BaseConceptRelationshipMetadataCdm55,
     BaseConceptRelationshipCdm55,
+    BaseConceptRelationshipMetadataCdm55,
     BaseConceptSynonymCdm55,
     BaseDomainCdm55,
     BaseDrugStrengthCdm55,
@@ -220,11 +220,14 @@ class Vocabulary(BaseVocabularyCdm55, Base):
 class Domain(BaseDomainCdm55, Base):
     pass
 
+
 class PackContent(BasePackContentCdm55, Base):
     pass
 
+
 class ConceptMetadata(BaseConceptMetadataCdm55, Base):
     pass
+
 
 class ConceptRelationshipMetadata(BaseConceptRelationshipMetadataCdm55, Base):
     pass
