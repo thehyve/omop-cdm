@@ -253,7 +253,9 @@ class ConceptRelationshipMetadata(Base):
 
     concept_id_1: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True)
     concept_id_2: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True)
-    relationship_id: Mapped[str] = mapped_column(String(20))
+    relationship_id: Mapped[str] = mapped_column(
+        ForeignKey(f"{VOCAB_SCHEMA}.relationship.relationship_id"), primary_key=True, index=True
+    )
     relationship_predicate_id: Mapped[Optional[str]] = mapped_column(String(20))
     relationship_group: Mapped[Optional[int]] = mapped_column(Integer)
     mapping_source: Mapped[Optional[str]] = mapped_column(String(50))
@@ -264,6 +266,9 @@ class ConceptRelationshipMetadata(Base):
 
     concept_1: Mapped["Concept"] = relationship("Concept", foreign_keys="ConceptRelationshipMetadata.concept_id_1")
     concept_2: Mapped["Concept"] = relationship("Concept", foreign_keys="ConceptRelationshipMetadata.concept_id_2")
+    relationship: Mapped["Relationship"] = relationship(
+        "Relationship", foreign_keys="ConceptRelationshipMetadata.relationship_id"
+    )
 
 
 class ConditionOccurrence(Base):
