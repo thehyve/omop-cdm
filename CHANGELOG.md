@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.7.0
+
+Updates
+- Added CDM version 5.5, changes:
+  - New vocabulary tables: pack_content, concept_metadata and concept_relationship_metadata
+  - Measurement and Observation: added value_as_source_concept_id field
+  - Observation: added value_as_date and unit_source_concept_id
+  - Specimen: added visit_occurrence_id and visit_detail_id
+  - cdm_source: added cdm_release_identifier
+
 ## v0.6.0
 
 Updates

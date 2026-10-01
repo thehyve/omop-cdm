@@ -29,7 +29,8 @@ Though not officially supported, omop-cdm doesn't use postgres-specific features
 of SQLAlchemy, so it can likely be used for other database types as well.
 
 ## CDM versions
-omop-cdm contains table defintions for the following CDM versions:
+omop-cdm contains table definitions for the following CDM versions:
+- CDM 5.5
 - CDM 5.4
 - CDM 5.3.1
 - CDM 6.0.0 ([not recommended](https://ohdsi.github.io/CommonDataModel/cdm60.html#NOTE_ABOUT_CDM_v60))
