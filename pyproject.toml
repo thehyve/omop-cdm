@@ -1,10 +1,11 @@
 [project]
 name = "omop-cdm"
-version = "0.6.0"
+version = "0.7.0"
 description = "SQLAlchemy ORM of the OHDSI OMOP CDM"
 authors = [
     {name = "Spayralbe", email = "stefan@thehyve.nl"},
     {name = "guuswilmink", email = "guus@thehyve.nl"},
+    {name = "Anne", email = "anne@thehyve.nl"},
 ]
 readme = "README.md"
 license = {text = "Apache Software License"}
