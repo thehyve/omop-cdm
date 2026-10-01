@@ -24,7 +24,7 @@ def _create_custom_cdm_tables(cdm54_custom_engine: Engine):
 
 
 @pytest.mark.usefixtures("_create_custom_cdm_tables")
-def test_custom_table_is_created(cdm54_custom_engine: Engine):
+def test_custom_table_is_created_cdm54(cdm54_custom_engine: Engine):
     cdm_tables = inspect(cdm54_custom_engine).get_table_names(SCHEMA_MAP[CDM_SCHEMA])
     assert set(cdm_tables) == CDM54_NON_VOCAB | CUSTOM | {"cloudspine"}
     validate_relationships(cdm54_custom_engine, cdm54_custom.Person)
