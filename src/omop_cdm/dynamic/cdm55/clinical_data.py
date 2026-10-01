@@ -801,7 +801,7 @@ class BaseObservationCdm55:
     value_as_number: Mapped[Optional[decimal.Decimal]] = mapped_column(Numeric, sort_order=700)
     value_as_string: Mapped[Optional[str]] = mapped_column(String(60), sort_order=800)
     value_as_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=900)
-    vale_as_date: Mapped[Optional[datetime.date]] = mapped_column(Date, sort_order=1000)
+    value_as_date: Mapped[Optional[datetime.date]] = mapped_column(Date, sort_order=1000)
     qualifier_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=1100)
     unit_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), sort_order=1200)
     provider_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_PROVIDER_ID), sort_order=1300)

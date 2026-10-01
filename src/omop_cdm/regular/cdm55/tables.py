@@ -800,6 +800,7 @@ class Observation(Base):
     observation_source_value: Mapped[Optional[str]] = mapped_column(String(50))
     observation_source_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID))
     unit_source_value: Mapped[Optional[str]] = mapped_column(String(50))
+    unit_source_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID))
     qualifier_source_value: Mapped[Optional[str]] = mapped_column(String(50))
     value_source_value: Mapped[Optional[str]] = mapped_column(String(50))
     value_as_source_concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID))
@@ -820,6 +821,8 @@ class Observation(Base):
     provider: Mapped["Provider"] = relationship("Provider", foreign_keys="Observation.provider_id")
     qualifier_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.qualifier_concept_id")
     unit_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.unit_concept_id")
+    unit_source_concept: Mapped["Concept"] = relationship(
+        "Concept", foreign_keys="Observation.unit_source_concept_id")
     value_as_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.value_as_concept_id")
     value_as_source_concept: Mapped["Concept"] = relationship(
         "Concept", foreign_keys="Observation.value_as_source_concept_id"
