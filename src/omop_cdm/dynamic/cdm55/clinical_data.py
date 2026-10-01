@@ -864,7 +864,7 @@ class BaseObservationCdm55:
         return relationship("VisitOccurrence", foreign_keys="Observation.visit_occurrence_id")
 
     @declared_attr
-    def unit_source_concept_id(cls) -> Mapped["Concept"]:
+    def unit_source_concept(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="Observation.unit_source_concept_id")
 
     @declared_attr
