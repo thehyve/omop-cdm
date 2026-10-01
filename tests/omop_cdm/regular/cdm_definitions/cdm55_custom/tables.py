@@ -6,7 +6,7 @@ from src.omop_cdm.dynamic.cdm55.clinical_data import BaseStemTableCdm55
 from src.omop_cdm.dynamic.cdm55.vocabularies.vocabularies import (
     BaseSourceToConceptMapVersionCdm55,
 )
-from src.omop_cdm.regular.cdm54 import Base
+from src.omop_cdm.regular.cdm55 import Base
 
 
 # Workaround to avoid affecting the global scope via DeclarativeBase.
