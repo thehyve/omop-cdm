@@ -219,9 +219,10 @@ class SourceToConceptMap(Base):
         "Vocabulary", foreign_keys="SourceToConceptMap.target_vocabulary_id"
     )
 
+
 class PackContent(Base):
     __tablename__ = "pack_content"
-    __table_args__ = {"schema": CDM_SCHEMA}
+    __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
 
     pack_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True)
@@ -235,7 +236,7 @@ class PackContent(Base):
 
 class ConceptMetadata(Base):
     __tablename__ = "concept_metadata"
-    __table_args__ = {"schema": CDM_SCHEMA}
+    __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
 
     concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True)
@@ -244,9 +245,10 @@ class ConceptMetadata(Base):
 
     concept: Mapped["Concept"] = relationship("Concept", foreign_keys="ConceptMetadata.concept_id")
 
+
 class ConceptRelationshipMetadata(Base):
     __tablename__ = "concept_relationship_metadata"
-    __table_args__ = {"schema": CDM_SCHEMA}
+    __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
 
     concept_id_1: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True)
@@ -262,7 +264,6 @@ class ConceptRelationshipMetadata(Base):
 
     concept_1: Mapped["Concept"] = relationship("Concept", foreign_keys="ConceptRelationshipMetadata.concept_id_1")
     concept_2: Mapped["Concept"] = relationship("Concept", foreign_keys="ConceptRelationshipMetadata.concept_id_2")
-
 
 
 class ConditionOccurrence(Base):
@@ -730,7 +731,9 @@ class Measurement(Base):
     unit_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Measurement.unit_concept_id")
     unit_source_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Measurement.unit_source_concept_id")
     value_as_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Measurement.value_as_concept_id")
-    value_as_source_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Measurement.value_as_source_concept_id")
+    value_as_source_concept: Mapped["Concept"] = relationship(
+        "Concept", foreign_keys="Measurement.value_as_source_concept_id"
+    )
     visit_detail: Mapped["VisitDetail"] = relationship("VisitDetail", foreign_keys="Measurement.visit_detail_id")
     visit_occurrence: Mapped["VisitOccurrence"] = relationship(
         "VisitOccurrence", foreign_keys="Measurement.visit_occurrence_id"
@@ -818,7 +821,9 @@ class Observation(Base):
     qualifier_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.qualifier_concept_id")
     unit_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.unit_concept_id")
     value_as_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.value_as_concept_id")
-    value_as_source_concept: Mapped["Concept"] = relationship("Concept", foreign_keys="Observation.value_as_source_concept_id")
+    value_as_source_concept: Mapped["Concept"] = relationship(
+        "Concept", foreign_keys="Observation.value_as_source_concept_id"
+    )
     visit_detail: Mapped["VisitDetail"] = relationship("VisitDetail", foreign_keys="Observation.visit_detail_id")
     visit_occurrence: Mapped["VisitOccurrence"] = relationship(
         "VisitOccurrence", foreign_keys="Observation.visit_occurrence_id"

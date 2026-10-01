@@ -276,9 +276,10 @@ class BaseSourceToConceptMapVersionCdm55:
     def source_vocabulary(cls) -> Mapped["Vocabulary"]:
         return relationship("Vocabulary", foreign_keys="SourceToConceptMapVersion.source_vocabulary_id")
 
+
 class BasePackContentCdm55:
     __tablename__ = "pack_content"
-    __table_args__ = {"schema": CDM_SCHEMA}
+    __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
 
     pack_concept_id: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, sort_order=100)
@@ -294,9 +295,10 @@ class BasePackContentCdm55:
     def drug_concept(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="PackContent.drug_concept_id")
 
+
 class BaseConceptMetadataCdm55:
     __tablename__ = "concept_metadata"
-    __table_args__ = {"schema": CDM_SCHEMA}
+    __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
 
     concept_id: Mapped[Optional[int]] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, sort_order=100)
@@ -307,9 +309,10 @@ class BaseConceptMetadataCdm55:
     def concept(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="ConceptMetadata.concept_id")
 
+
 class BaseConceptRelationshipMetadataCdm55:
     __tablename__ = "concept_relationship_metadata"
-    __table_args__ = {"schema": CDM_SCHEMA}
+    __table_args__ = {"schema": VOCAB_SCHEMA}
     __repr__ = record_as_str
 
     concept_id_1: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, sort_order=100)
@@ -330,4 +333,3 @@ class BaseConceptRelationshipMetadataCdm55:
     @declared_attr
     def concept_2(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="ConceptRelationshipMetadata.concept_id_2")
-
