@@ -317,7 +317,9 @@ class BaseConceptRelationshipMetadataCdm55:
 
     concept_id_1: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, sort_order=100)
     concept_id_2: Mapped[int] = mapped_column(ForeignKey(FK_CONCEPT_ID), primary_key=True, sort_order=200)
-    relationship_id: Mapped[str] = mapped_column(String(20), sort_order=300)
+    relationship_id: Mapped[str] = mapped_column(
+        ForeignKey(f"{VOCAB_SCHEMA}.relationship.relationship_id"), index=True, sort_order=300
+    )
     relationship_predicate_id: Mapped[Optional[str]] = mapped_column(String(20), sort_order=400)
     relationship_group: Mapped[Optional[int]] = mapped_column(Integer, sort_order=500)
     mapping_source: Mapped[Optional[str]] = mapped_column(String(50), sort_order=600)
@@ -333,3 +335,7 @@ class BaseConceptRelationshipMetadataCdm55:
     @declared_attr
     def concept_2(cls) -> Mapped["Concept"]:
         return relationship("Concept", foreign_keys="ConceptRelationshipMetadata.concept_id_2")
+
+    @declared_attr
+    def relationship(cls) -> Mapped["Relationship"]:
+        return relationship("Relationship", foreign_keys="ConceptRelationshipMetadata.relationship_id")
